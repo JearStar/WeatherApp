@@ -9,7 +9,6 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 public class JSONParser {
-    public static String API_KEY = "bdae2e3555fb4a1eadb153333212008";
 
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
