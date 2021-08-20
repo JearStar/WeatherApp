@@ -1,4 +1,4 @@
-package model;
+package JSON;
 
 
 import org.json.JSONException;
