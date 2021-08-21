@@ -20,10 +20,39 @@ public class Forecast {
         this.location = new Location(jsonObject);
         this.current = new Weather(jsonObject);
 
-        this.byHour = (JSONArray) jsonObject.get("forecast");
-        this.country = (String) locObject.get("country");
-        this.lat = (double) locObject.get("lat");
-        this.lon = (double) locObject.get("lon");
-        this.tzId = (String) locObject.get("tz_id");
-        this.localTime = (String) locObject.get("localtime");
+        JSONArray jsonArray = (JSONArray) jsonObject.get("forecast");
+        for (Object o : jsonArray) {
+            Weather weather = new Weather((JSONObject) o);
+            byHour.add(weather);
+        }
+
+        JSONObject astroObject = (JSONObject) jsonObject.get("astro");
+        this.sunrise = (String) astroObject.get("sunrise");
+        this.sunset = (String) astroObject.get("sunset");
+        this.moonPhase = (String) astroObject.get("moonPhase");
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public Weather getCurrent() {
+        return current;
+    }
+
+    public List<Weather> getByHour() {
+        return byHour;
+    }
+
+    public String getSunrise() {
+        return sunrise;
+    }
+
+    public String getSunset() {
+        return sunset;
+    }
+
+    public String getMoonPhase() {
+        return moonPhase;
+    }
 }
