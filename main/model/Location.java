@@ -12,14 +12,14 @@ public class Location {
     private String localTime;
 
     public Location(JSONObject jsonObject) {
-        JSONObject locObject = (JSONObject) jsonObject.get("location");
-        this.name = (String) locObject.get("name");
-        this.region = (String) locObject.get("region");
-        this.country = (String) locObject.get("country");
-        this.lat = (float) locObject.get("lat");
-        this.lon = (float) locObject.get("lon");
-        this.tzId = (String) locObject.get("tz_id");
-        this.localTime = (String) locObject.get("localtime");
+        JSONObject locObject =  jsonObject.getJSONObject("location");
+        this.name = locObject.getString("name");
+        this.region = locObject.getString("region");
+        this.country = locObject.getString("country");
+        this.lat = locObject.getFloat("lat");
+        this.lon = locObject.getFloat("lon");
+        this.tzId = locObject.getString("tz_id");
+        this.localTime = locObject.getString("localtime");
     }
 
     public String getName() {
