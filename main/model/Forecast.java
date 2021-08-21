@@ -19,8 +19,8 @@ public class Forecast {
     private String moonPhase;
 
     public Forecast(JSONObject jsonObject) {
-        JSONObject fcObject = (JSONObject) jsonObject.get("forecast");
-        JSONArray fcdArray = (JSONArray) fcObject.get("forecastday");
+        JSONObject fcObject = jsonObject.getJSONObject("forecast");
+        JSONArray fcdArray = fcObject.getJSONArray("forecastday");
         this.location = new Location(jsonObject); //location
         this.current = new Weather(jsonObject);   //current weather
 
@@ -28,9 +28,9 @@ public class Forecast {
             List<Weather> hourlyWeather = new LinkedList<>();
             JSONObject dateObject = (JSONObject) o;
 
-            String date = (String) dateObject.get("date");
+            String date = dateObject.getString("date");
 
-            JSONArray hourObject = (JSONArray) dateObject.get("hour");
+            JSONArray hourObject = dateObject.getJSONArray("hour");
             for (Object ob : hourObject) {
                 hourlyWeather.add((Weather) ob);
             }
@@ -39,10 +39,10 @@ public class Forecast {
                                                                 // that day. Includes the current day
         }
 
-        JSONObject astroObject = (JSONObject) jsonObject.get("astro");
-        this.sunrise = (String) astroObject.get("sunrise");
-        this.sunset = (String) astroObject.get("sunset");           //astro information only for current day
-        this.moonPhase = (String) astroObject.get("moonPhase");
+        JSONObject astroObject = jsonObject.getJSONObject("astro");
+        this.sunrise = astroObject.getString("sunrise");
+        this.sunset = astroObject.getString("sunset");           //astro information only for current day
+        this.moonPhase = astroObject.getString("moonPhase");
     }
 
     //getters
