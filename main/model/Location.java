@@ -6,8 +6,8 @@ public class Location {
     private String name;
     private String region;
     private String country;
-    private double lat;
-    private double lon;
+    private float lat;
+    private float lon;
     private String tzId;
     private String localTime;
 
@@ -16,8 +16,8 @@ public class Location {
         this.name = (String) locObject.get("name");
         this.region = (String) locObject.get("region");
         this.country = (String) locObject.get("country");
-        this.lat = (double) locObject.get("lat");
-        this.lon = (double) locObject.get("lon");
+        this.lat = (float) locObject.get("lat");
+        this.lon = (float) locObject.get("lon");
         this.tzId = (String) locObject.get("tz_id");
         this.localTime = (String) locObject.get("localtime");
     }
@@ -34,11 +34,11 @@ public class Location {
         return country;
     }
 
-    public double getLat() {
+    public float getLat() {
         return lat;
     }
 
-    public double getLon() {
+    public float getLon() {
         return lon;
     }
 
