@@ -80,8 +80,9 @@ public class WeatherApp {
         days = input.nextInt();
 
         try {
-            forecast = new Forecast(JSONParser.readJsonFromUrl("http://api.weatherapi.com/v1/current.json?key=" +
-                    API_KEY + "&q=" + city + "," + country + "&days=" + days + "&aqi=yes&alerts=no"));
+            String urlForecast = "http://api.weatherapi.com/v1/forecast.json?key=" +
+                    API_KEY + "&q=" + city + "," + country + "&days=" + days + "&aqi=yes&alerts=no";
+            forecast = new Forecast(JSONParser.readJsonFromUrl(urlForecast));
         } catch (IOException e) {
             e.printStackTrace();
         }
