@@ -6,20 +6,20 @@ public class Location {
     private String name;
     private String region;
     private String country;
-    private float lat;
-    private float lon;
+    private double lat;
+    private double lon;
     private String tzId;
     private String localTime;
 
     public Location(JSONObject jsonObject) {
-        JSONObject locObject =  jsonObject.getJSONObject("location");
-        this.name = locObject.getString("name");
-        this.region = locObject.getString("region");
-        this.country = locObject.getString("country");
-        this.lat = locObject.getFloat("lat");
-        this.lon = locObject.getFloat("lon");
-        this.tzId = locObject.getString("tz_id");
-        this.localTime = locObject.getString("localtime");
+        JSONObject locObject = (JSONObject) jsonObject.get("location");
+        this.name = (String) locObject.get("name");
+        this.region = (String) locObject.get("region");
+        this.country = (String) locObject.get("country");
+        this.lat = (double) locObject.get("lat");
+        this.lon = (double) locObject.get("lon");
+        this.tzId = (String) locObject.get("tz_id");
+        this.localTime = (String) locObject.get("localtime");
     }
 
     public String getName() {
@@ -34,11 +34,11 @@ public class Location {
         return country;
     }
 
-    public float getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public float getLon() {
+    public double getLon() {
         return lon;
     }
 

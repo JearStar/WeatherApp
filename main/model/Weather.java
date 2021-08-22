@@ -6,7 +6,7 @@ public class Weather {
     String lastUpdated;
     float tempC;
     float tempF;
-    boolean isDay;
+    int isDay;
     String condition;
     String iconURL;
     float windMph;
@@ -35,11 +35,13 @@ public class Weather {
 
 
 
-    public Weather(JSONObject object) {
+    public Weather(JSONObject jsonObject) {
+        JSONObject object = jsonObject.getJSONObject("current");
+
         lastUpdated = object.getString("last_updated");
         tempC = object.getFloat("temp_c");
-        tempF = object.getFloat("temp_F");
-        isDay = object.getInt("is_day") == 1;
+        tempF = object.getFloat("temp_f");
+        isDay = object.getInt("is_day");
         condition = object.getJSONObject("condition").getString("text");
         iconURL = object.getJSONObject("condition").getString("icon");
         windMph = object.getFloat("wind_mph");
@@ -80,7 +82,7 @@ public class Weather {
         return tempF;
     }
 
-    public boolean getIsDay() {
+    public int getIsDay() {
         return isDay;
     }
 
