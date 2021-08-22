@@ -17,6 +17,7 @@ public class Forecast {
         this.current = new Weather(jsonObject);   //current weather
         this.extendedForecast = new HashMap<>();
 
+
         for (Object o : fcdArray) {
             String date = ((JSONObject) o).getString("date");
             ForecastDay fcd = new ForecastDay((JSONObject) o);

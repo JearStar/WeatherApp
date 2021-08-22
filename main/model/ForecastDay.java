@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ForecastDay {
 
@@ -29,14 +30,15 @@ public class ForecastDay {
     private String iconUrl;
     private float uv;
 
-    private HashMap<String, ForecastHour> hourlyWeather;
+    private Map<String, ForecastHour> hourlyWeather = new HashMap<>();
 
     //astro
     private String sunrise;
     private String sunset;
     private String moonPhase;
 
-    public ForecastDay(JSONObject jsonObject) {
+    public ForecastDay(JSONObject obj) {
+        JSONObject jsonObject = obj.getJSONObject("day");
         maxTempC = jsonObject.getFloat("maxtemp_c");
         maxTempF = jsonObject.getFloat("maxtemp_f");
         minTempC = jsonObject.getFloat("mintemp_c");
@@ -59,16 +61,16 @@ public class ForecastDay {
         uv = jsonObject.getFloat("uv");
 
 
-        JSONArray jsonArray = jsonObject.getJSONArray("hour");
+        JSONArray jsonArray = obj.getJSONArray("hour");
 
         for (Object o : jsonArray) {
             ForecastHour fch = new ForecastHour((JSONObject) o);
             this.hourlyWeather.put(((JSONObject) o).getString("time"), fch);
         }
 
-        JSONObject astroObject = jsonObject.getJSONObject("astro");
+        JSONObject astroObject = obj.getJSONObject("astro");
         this.sunrise = astroObject.getString("sunrise");
         this.sunset = astroObject.getString("sunset");
-        this.moonPhase = astroObject.getString("moonPhase");
+        this.moonPhase = astroObject.getString("moon_phase");
     }
 }
